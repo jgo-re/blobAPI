@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://blob-api-go.herokuapp.com']
+ALLOWED_HOSTS = ['https://blob-api-go.herokuapp.com','https://jgo.re']
 
 
 # Application definition
@@ -49,11 +49,7 @@ INSTALLED_APPS = [
     'rest_framework', 
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'https://blob-api-go.herokuapp.com',
-    'https://jgo-re.github.io'
-]
+CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS')
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
