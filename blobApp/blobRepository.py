@@ -27,6 +27,6 @@ def Create(value):
 
 
 def CleanupTask():
-    print('running cleanup task')
     blobs = Blob.objects.filter(CreatedOn__lt=(datetime.now(tz=timezone.utc) - timedelta(minutes=15)))
+    print(f'Deleting: {blobs.count()} expired blobs.')
     blobs.delete()
