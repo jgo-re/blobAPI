@@ -16,7 +16,7 @@ def blobApi(request, key=''):
         try:
             blob = Blob.objects.get(Key=key)
         except Blob.DoesNotExist:
-            return response.HttpResponseNotFound
+            return response.HttpResponseNotFound()
 
         blobsSerializer = BlobSerializer(blob)
         return response.JsonResponse(blobsSerializer.data, safe=False)
