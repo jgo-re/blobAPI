@@ -51,7 +51,8 @@ INSTALLED_APPS = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'https://blob-api-go.herokuapp.com'
+    'https://blob-api-go.herokuapp.com',
+    'https://jgo-re.github.io'
 ]
 
 MIDDLEWARE = [
