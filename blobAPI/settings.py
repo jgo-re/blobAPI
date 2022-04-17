@@ -32,7 +32,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://blob-api-go.herokuapp.com','https://jgo.re']
+ALLOWED_HOSTS = [
+    'https://blob-api-go.herokuapp.com',
+    'https://jgo.re'
+]
 
 
 # Application definition
