@@ -15,6 +15,14 @@ def blobApi(request, key=''):
         return response.JsonResponse(data, safe=False)
 
     elif request.method == 'POST':
-        blobData = JSONParser().parse(request)
-        key = blobRepository.Create(blobData.get('Value'))
+        try:
+            blobData = JSONParser().parse(request)
+        except:
+            return response.HttpResponseBadRequest()
+
+        value = blobData.get('Value')
+        if (not value or value.isspace()):
+            return response.HttpResponseBadRequest()
+
+        key = blobRepository.Create(value)
         return response.JsonResponse(key, safe=False)
