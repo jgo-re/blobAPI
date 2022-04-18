@@ -5,13 +5,15 @@ from datetime import *
 import time
 import secrets
 
+BLOB_TTL_MINUTES = 15
+
 def Get(key):
     try:
         blob = Blob.objects.get(Key=key)
     except Blob.DoesNotExist:
         return (False, {})
     
-    if((time.time() - blob.CreatedOn.timestamp()) > (15*60)):
+    if((time.time() - blob.CreatedOn.timestamp()) > (BLOB_TTL_MINUTES*60)):
         blob.delete()
         return (False, {})
 
@@ -27,6 +29,6 @@ def Create(value):
 
 
 def CleanupTask():
-    blobs = Blob.objects.filter(CreatedOn__lt=(datetime.now(tz=timezone.utc) - timedelta(minutes=15)))
+    blobs = Blob.objects.filter(CreatedOn__lt=(datetime.now(tz=timezone.utc) - timedelta(minutes=BLOB_TTL_MINUTES)))
     print(f'Deleting: {blobs.count()} expired blobs.')
     blobs.delete()
